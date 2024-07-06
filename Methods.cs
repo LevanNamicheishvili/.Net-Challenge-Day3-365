@@ -6,7 +6,7 @@ namespace Methods
     {
         private int[] array;
         private int target;
-
+        //search params
         public void SearchParams(int[] array, int target)
         {
             if (array == null || array.Length == 0)
