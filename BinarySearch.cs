@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Methods
 {
@@ -6,29 +10,17 @@ namespace Methods
     {
         private int[] array;
         private int target;
+        private int resultIndex;
 
-        public void SearchParams(int[] array, int target)
+        public BinarySearch(int[] array, int target)
         {
-            if (array == null || array.Length == 0)
-            {
-                throw new ArgumentException(nameof(array));
-            }
-
             this.array = array;
             this.target = target;
+            this.resultIndex = PerformBinarySearch(0, array.Length - 1);
         }
 
-        public int PerformBinarySearch()
+        private int PerformBinarySearch(int left, int right)
         {
-            if (array == null || array.Length == 0)
-            {
-                throw new InvalidOperationException();
-
-            }
-
-            int left = 0;
-            int right = array.Length - 1;
-
             while (left <= right)
             {
                 int mid = left + (right - left) / 2;
@@ -36,19 +28,28 @@ namespace Methods
                 if (array[mid] == target)
                 {
                     return mid;
+
                 }
 
                 if (array[mid] < target)
                 {
+
                     left = mid + 1;
                 }
+
                 else
                 {
+
                     right = mid - 1;
                 }
             }
 
             return -1;
+        }
+
+        public int GetResultIndex()
+        {
+            return resultIndex;
         }
     }
 }

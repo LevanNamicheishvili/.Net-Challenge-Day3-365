@@ -1,39 +1,45 @@
-﻿using System;
+﻿using Methods;
 
 namespace Methods
 {
     class Program
     {
+    
         static void Main(string[] args)
         {
+           //Matrix
+           Matrix matrix = new Matrix(3, 3, 3);
+           matrix.PrintMatrix();
 
-            Console.WriteLine("enter arr elemetns : ");
 
-            string input = Console.ReadLine();
-            int[] array = input.Split(' ')
-                               .Select(int.Parse)
-                               .ToArray();
+          //BinarySearch
+          int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+          int target = 5;
+          BinarySearch binarySearch = new BinarySearch(array, target);
+          int resultIndex = binarySearch.GetResultIndex();
+          System.Console.WriteLine("index at {0}", resultIndex);
+          
 
-            Array.Sort(array);
+          //InsertionSort
+          int[] array2 = { 12, 11, 13, 5, 6 };
+          InsertSort insertSort = new InsertSort(array2);
+          
+          Console.WriteLine("Foreach meth");
 
-            Console.WriteLine("enter target : ");
-            int target = int.Parse(Console.ReadLine());
+          //ForEach
+          int[] array3 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+          string [] stringArr = {"a", "b", "c", "d", "e"};
+          ArrEach<int> arrEach = new ArrEach<int>(array3, item =>
+          {
+              item *= 2;
+              System.Console.WriteLine(item);
+          }
+          );
+          
 
-            BinarySearch search = new BinarySearch();
+          
+          
 
-            search.SearchParams(array, target);
-
-            int result = search.PerformBinarySearch();
-            if (result == -1)
-            {
-                Console.WriteLine("element not found");
-                Console.ReadKey();
-            }
-            else
-            {
-                Console.WriteLine("element index " + result);
-                Console.ReadKey();
-            }
         }
     }
 }
